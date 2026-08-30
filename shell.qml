@@ -1,3 +1,5 @@
+//@ pragma UseQApplication
+
 /*
 Jawad's SwayWM status bar
 
