@@ -125,7 +125,8 @@ Variants {
         property int maxBrightness: parseInt(backlightMaxBrightness.text())
 
         Timer {
-            interval: 2000
+            // interval: 2000
+            interval: 1000
             running: true
             repeat: true
             onTriggered: {
