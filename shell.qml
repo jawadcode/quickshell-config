@@ -259,7 +259,7 @@ Variants {
                 spacing: 12
 
                 Repeater {
-                id: systray
+                    id: systray
                     model: SystemTray.items
                     delegate: Item {
                         id: trayItem
@@ -387,20 +387,23 @@ Variants {
                 font.pixelSize: root.uiFontSize
             }
 
+            // Battery
             Text {
                 textFormat: Text.RichText
                 property int chargeLevel: Math.round(UPower.displayDevice.percentage * 100)
-                function batIcon(level: int): string {
-                    if (level <= 25)
+                function batIcon(level: int, charging: bool): string {
+                    if (charging)
+                        return "\uf1e6";
+                    else if (level <= 25)
                         return "\uf244";
-                    if (level <= 50)
+                    else if (level <= 50)
                         return "\uf243";
-                    if (level <= 75)
+                    else if (level <= 75)
                         return "\uf241";
                     else
                         return "\uf240";
                 }
-                text: `<font face='Font Awesome 7 Free Solid'>${batIcon(chargeLevel)}</font> ${chargeLevel}%`
+                text: `<font face='Font Awesome 7 Free Solid'>${batIcon(chargeLevel, !UPower.onBattery)}</font> ${chargeLevel}%`
                 color: root.colFg
                 font.pixelSize: root.uiFontSize
             }
